@@ -4,13 +4,12 @@ const Weather = require('../models/weatherSchema');
 const moment = require('moment');
 
 
-
 let csvJson = [];
 
 
 router.get('/',function(req,res,next){
 
-  res.send(“Welcome to my Weather Information App”);
+  res.send("Welcome to my Weather Information App");
 });
 
 

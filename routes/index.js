@@ -7,6 +7,13 @@ const moment = require('moment');
 
 let csvJson = [];
 
+
+router.get('/',function(req,res,next){
+
+  res.send(“Welcome to my Weather Information App”);
+});
+
+
 /* GET historical data. */
 router.get('/historical', function (req, res, next) {
 

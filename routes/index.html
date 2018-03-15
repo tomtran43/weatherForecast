@@ -97,7 +97,7 @@ div.html('');
 
      $.each(data, function(i, w) {
 
-          weather.append("<tr><tdalign=\"center\">" + w.DATE +"</td><td align=\"center\">" + w.TMIN + "</td><td align=\"center\">" + w.TMAX + "</td></tr>");
+          weather.append("<tr><td align=\"center\">" + w.DATE + "</td><td align=\"center\">" + w.TMIN + "</td><td align=\"center\">" + w.TMAX + "</td></tr>");
         });
 
         if(data.status == "404") {

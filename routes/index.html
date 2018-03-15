@@ -32,24 +32,18 @@ min="20130101">
 <button>Forecast</button>
 
 <div
-id="div1"></div>
+id="div"></div>
 
 
 
 <table
 id ="table"
 style="width:80%">
-
 <tr>
-
 <th>DATE</th>
-
 <th>TMIN</th>
-
 <th>TMAX</th>
-
 </tr>
-
 </table>
 
 </body>
@@ -79,7 +73,7 @@ $("button").click(function(){
 
     var date = $("input").val();
 
-    var div = $("#div1");
+    var div = $("#div");
 
 div.html('');
 
@@ -91,7 +85,7 @@ div.html('');
 
      url: '/forecast/' + date,
 
-     headers: {'Access-Control-Allow-Origin' : 'https://weathertom.herokuapp.com/forecast/'},
+     headers: {'Access-Control-Allow-Origin' : 'https://weathertom.herokuapp.com/'},
 
      data: '',
 

@@ -9,7 +9,7 @@ let csvJson = [];
 
 router.get('/',function(req,res,next){
 
-  res.send("Welcome to my Weather Information App");
+  res.sendfile('index.html', {root: _dirname + "/views"});
 });
 
 

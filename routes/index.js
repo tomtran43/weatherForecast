@@ -9,7 +9,7 @@ let csvJson = [];
 
 router.get('/',function(req,res,next){
 
-  res.sendfile('index.html', {root: __dirname + "/views"});
+  res.sendfile('index.html', {root: __dirname});
 });
 
 

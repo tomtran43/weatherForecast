@@ -6,56 +6,41 @@
 
 
 
-<h3>
+  <h3>
 
-3rd party widget
+    <a class="weatherwidget-io" href="https://forecast7.com/en/39d10n84d51/cincinnati/?unit=us" data-label_1="CINCINNATI" data-label_2="WEATHER"
+      data-theme="original">CINCINNATI WEATHER</a>
 
-<a
-class="weatherwidget-io"
-href="https://forecast7.com/en/39d10n84d51/cincinnati/?unit=us"
-data-label_1="CINCINNATI"
-data-label_2="WEATHER"
-data-theme="original"
->CINCINNATI WEATHER</a>
+  </h3>
 
-</h3>
-
-<br>
+  <br>
 
 
 
-<h3>Weather App
-</h3>
+  <h3>Weather App
+  </h3>
 
-<input
-value="20170301"
-id="input"
-type="number"
-step="1"
-min="20130101">
+  <input value="20170301" id="input" type="number" step="1" min="20130101">
 
-<button>Forecast</button>
+  <button>Forecast</button>
 
-<div
-id="div1"></div>
+  <div id="div1"></div>
 
 
 
-<table
-id ="table"
-style="width:80%">
+  <table id="table" style="width:80%">
 
-<tr>
+    <tr>
 
-<th>DATE</th>
+      <th>DATE</th>
 
-<th>TMIN</th>
+      <th>TMIN</th>
 
-<th>TMAX</th>
+      <th>TMAX</th>
 
-</tr>
+    </tr>
 
-</table>
+  </table>
 
 </body>
 
@@ -63,70 +48,43 @@ style="width:80%">
 
 
 <script>
-
-!function(d,s,id){var
-js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-
+  !function (d, s, id) {
+    var
+      js, fjs = d.getElementsByTagName(s)[0]; if (!d.getElementById(id)) { js = d.createElement(s); js.id = id; js.src = 'https://weatherwidget.io/js/widget.min.js'; fjs.parentNode.insertBefore(js, fjs); }
+  }(document, 'script', 'weatherwidget-io-js');
 </script>
 
 
 
-<script
-src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script>
-
-
-
-$(document).ready(function(){
-
-$("button").click(function(){
-
-    var date = $("input").val();
-
-    var div = $("#div1");
-
-div.html('');
-
-    $("#table").html('<tr><th>DATE</th><th>TMAX</th><th>TMIN</th></tr>');
-
-  $.ajax({
-
-     type: 'GET',
-
-     url: '/forecast/' + date,
-
-     headers: {'Access-Control-Allow-Origin' : 'https://weathertom.herokuapp.com/historical/'},
-
-     data: '',
-
-     dataType: 'json',
-
-     success: function (data) {
-
-        var weather = $("#table");
-
-     $.each(data, function(i, w) {
-
-          weather.append("<tr><tdalign=\"center\">" + w.DATE +"</td><td align=\"center\">" + w.TMIN + "</td><td align=\"center\">" + w.TMAX + "</td></tr>");
-        });
-
-        if(data.status == "404") {
-
+  $(document).ready(function () {
+    $("button").click(function () {
+      var date = $("input").val();
+      var div = $("#div1");
+      div.html('');
+      $("#table").html('<tr><th>DATE</th><th>TMIN</th><th>TMAX</th></tr>');
+      $.ajax({
+        type: 'GET',
+        url: '/forecast/' + date,
+        headers: { 'Access-Control-Allow-Origin': 'https://weathertom.herokuapp.com/historical/' },
+        data: '',
+        dataType: 'json',
+        success: function (data) {
+          var weather = $("#table");
+          $.each(data, function (i, w) {
+            weather.append("<tr><td align=\"center\">" + w.DATE + "</td><td align=\"center\">" + w.TMIN + "</td><td align=\"center\">" + w.TMAX + "</td></tr>");
+          });
+          if (data.status == "404") {
+            div.html('Format is YYYYMMDD');
+            $("#table").html('<tr><th>DATE</th><th>TMAX</th><th>TMIN</th></tr>');
+          }
+        },
+        error: function (data) {
           div.html('Format is YYYYMMDD');
-
-          $("#table").html('<tr><th>DATE</th><th>TMAX</th><th>TMIN</th></tr>');
-
         }
-     },
-
-      error: function(data) {
-
-        div.html('Format is YYYYMMDD');
-
-      }
+      });
     });
   });
-});
-
 </script>
